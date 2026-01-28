@@ -34,6 +34,7 @@ jobs:
           
   Gitleaks-scan:
      runs-on: Agent-1
+     needs: Compile
 
      steps:
        -  name: Checkout Code
