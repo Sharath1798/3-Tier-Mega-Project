@@ -11,7 +11,7 @@ on:
 
 jobs:
   Compile:
-    runs-on: Agent-1
+    runs-on: Agent-1-Local-mac-os
 
     steps:
       - name: Checkout Code
