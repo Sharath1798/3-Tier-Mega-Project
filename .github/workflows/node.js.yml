@@ -10,8 +10,7 @@ on:
     branches: [ "pre-prod" ]
 
 jobs:
-  build:
-
+  Compile:
     runs-on: Agent-1
 
     steps:
@@ -32,7 +31,21 @@ jobs:
         run:  |
           cd app
           find . -name "*.js" -exec node --check {} +
+          
+  Gitleaks-scan:
+     runs-on: Agent-1
 
+     steps:
+       -  name: Checkout Code
+          uses: action/checkout@v4
+          
+       -  name: Gitleaks
+          uses: gitleaks/gitleaks-action@v2
+
+       - name: Gitleaks Scan
+         run: |
+            gitleaks detect --source ./client --exit-code 1
+            gitleaks detect --source ./app --exit-code 1
       
           
 
